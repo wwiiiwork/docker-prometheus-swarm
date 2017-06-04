@@ -16,13 +16,13 @@ services:
       - /var/lib/docker/:/var/lib/docker
     deploy:
       mode: global
-      resources:
-        limits:
-          cpus: '0.10'
-          memory: 128M
-        reservations:
-          cpus: '0.10'
-          memory: 64M
+      #resources:
+        #limits:
+          #cpus: '0.10'
+          #memory: 128M
+        #reservations:
+          #cpus: '0.10'
+          #memory: 64M
 
   node-exporter:
     image: basi/node-exporter:${NODE_EXPORTER_VERSION:-v1.13.0}
@@ -38,13 +38,13 @@ services:
     command: -collector.procfs "/host/proc" -collector.sysfs /host/sys -collector.textfile.directory /etc/node-exporter/ -collectors.enabled 'conntrack,diskstats,entropy,filefd,filesystem,loadavg,mdadm,meminfo,netdev,netstat,stat,textfile,time,vmstat,ipvs' -collector.filesystem.ignored-mount-points "^/(sys|proc|dev|host|etc)($$|/)"
     deploy:
       mode: global
-      resources:
-        limits:
-          cpus: '0.10'
-          memory: 32M
-        reservations:
-          cpus: '0.10'
-          memory: 16M
+      #resources:
+        #limits:
+          #cpus: '0.10'
+          #memory: 32M
+        #reservations:
+          #cpus: '0.10'
+          #memory: 16M
 
   docker-exporter:
     image: basi/socat:${DOCKER_EXPORTER_VERSION:-v0.1.0}
@@ -52,13 +52,13 @@ services:
       - monitoring
     deploy:
       mode: global
-      resources:
-        limits:
-          cpus: '0.05'
-          memory: 6M
-        reservations:
-          cpus: '0.05'
-          memory: 4M
+      #resources:
+        #limits:
+          #cpus: '0.05'
+          #memory: 6M
+        #reservations:
+          #cpus: '0.05'
+          #memory: 4M
 
   alertmanager:
     image: basi/alertmanager:${ALERTMANAGER_VERSION:-v0.1.0}
@@ -74,13 +74,13 @@ services:
     deploy:
       mode: replicated
       replicas: 1
-      resources:
-        limits:
-          cpus: '0.01'
-          memory: 32M
-        reservations:
-          cpus: '0.01'
-          memory: 16M
+      #resources:
+        #limits:
+          #cpus: '0.01'
+          #memory: 32M
+        #reservations:
+          #cpus: '0.01'
+          #memory: 16M
 
   prometheus:
     image: basi/prometheus-swarm:${PROMETHEUS_SWARM_VERSION:-v0.4.3}
@@ -92,13 +92,13 @@ services:
     deploy:
       mode: replicated
       replicas: 1
-      resources:
-        limits:
-          cpus: '0.50'
-          memory: 1024M
-        reservations:
-          cpus: '0.50'
-          memory: 128M
+      #resources:
+        #limits:
+          #cpus: '0.50'
+          #memory: 1024M
+        #reservations:
+          #cpus: '0.50'
+          #memory: 128M
 
   grafana:
     image: basi/grafana:${GRAFANA_VERSION:-v4.1.1}
@@ -115,10 +115,10 @@ services:
     deploy:
       mode: replicated
       replicas: 1
-      resources:
-        limits:
-          cpus: '0.50'
-          memory: 64M
-        reservations:
-          cpus: '0.50'
-          memory: 32M
+      #resources:
+        #limits:
+          #cpus: '0.50'
+          #memory: 64M
+        #reservations:
+          #cpus: '0.50'
+          #memory: 32M
